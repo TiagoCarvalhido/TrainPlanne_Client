@@ -9,15 +9,15 @@ export default function ClientsGrid() {
   const baseURL = "http://localhost:5000";
 
   const columns = [
-    { field: "name", headerName: "ID" },
-    { field: "adress", headerName: "Title" },
+    { field: "name", headerName: "Nome", width: 300 },
+    { field: "adress", headerName: "Morada", width: 500 },
   ];
 
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {
-      console.log("Response", response.data);
+      // console.log("Response", response.data);
       setClients(response.data);
     });
   });

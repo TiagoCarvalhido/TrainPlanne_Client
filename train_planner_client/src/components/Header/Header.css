@@ -1,0 +1,24 @@
+.drawer-list-title {
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.drawer-list-span {
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.drawer-list-divider {
+  border-width: 2px !important;
+  border-color: #c9ccd1 !important;
+}
+
+.css-1p823my-MuiListItem-root {
+  padding-bottom: 20px !important;
+  cursor: pointer;
+}
+
+.css-1p823my-MuiListItem-root :hover {
+  background-color: "#1976D2" !important;
+}

@@ -18,13 +18,8 @@ function App() {
         </div>
         <div style={{ display: "flex" }}>
           <div className="card">
-            <Card style={{ height: 300 + "px" }} variant="outlined">
-              <ClientsGrid></ClientsGrid>
-            </Card>
-          </div>
-          <div className="card">
-            <Card variant="outlined">
-              <ClientsGrid></ClientsGrid>
+            <Card style={{ height: 500 + "px" }} variant="outlined">
+              {/* <ClientsGrid></ClientsGrid> */}
             </Card>
           </div>
         </div>
