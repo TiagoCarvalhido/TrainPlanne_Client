@@ -7,9 +7,12 @@ import Modal from "@mui/material/Modal";
 import Switch from "@mui/material/Switch";
 
 import TextField from "@mui/material/TextField";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { width } from "@mui/system";
+
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -23,36 +26,81 @@ const style = {
   p: 4,
 };
 
-export default function ModalAddClient(isAddModalVisible) {
-  console.log("isAddModalVisible: ", isAddModalVisible);
-
-  React.useEffect(() => {
-    setOpen(isAddModalVisible.isVisible);
+export default function ModalAddClient(props) {
+  useEffect(() => {
+    console.log("props: ", props);
   });
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    isAddModalVisible = false;
+  const [nameInput, setNameInput] = React.useState("");
+  const changeValueName = (e) => {
+    setNameInput(e.target.value);
+  };
+
+  const [adressInput, setAdressInput] = React.useState("");
+  const changeValueAdress = (e) => {
+    setAdressInput(e.target.value);
+  };
+
+  const [contactInput, setContactInput] = React.useState("");
+  const changeValueContact = (e) => {
+    setContactInput(e.target.value);
+  };
+
+  const [activeInput, setActiveInput] = React.useState(false);
+  const changeValueActive = (e) => {
+    setActiveInput(e.target.value);
+  };
+  const [emailInput, setEmailInput] = React.useState("");
+  const changeValueEmail = (e) => {
+    setEmailInput(e.target.value);
+  };
+  const [objectiveInput, setObjectiveInput] = React.useState("");
+  const changeValueObjective = (e) => {
+    setObjectiveInput(e.target.value);
+  };
+
+  const addNewClient = () => {
+    const baseURL = "http://localhost:5000";
+
+    let params = {
+      name: nameInput,
+      adress: adressInput,
+      contact: contactInput,
+      active: activeInput,
+    };
+
+    axios.post(baseURL, params).then((response) => {
+      console.log("Response", response);
+    });
   };
 
   return (
     <div>
       <Modal
-        onBackdropClick={handleClose}
-        open={open}
-        onClose={handleClose}
+        open={props.isVisible}
+        onClose={props.close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div>
+          <div style={{ display: "flex" }}>
             <span className="modal-title">Adicionar cliente</span>
+            <div>
+              <span>Ativo</span>
+              <Switch
+                onChange={changeValueActive}
+                value={activeInput}
+                label="Ativo"
+                defaultChecked
+              />
+            </div>
           </div>
           <div style={{ display: "flex" }}>
             <div className="input-div">
               <TextField
-                style={{ width: 100 + "%" }}
+                onChange={changeValueName}
+                value={nameInput}
+                style={{ width: 92 + "%" }}
                 id="outlined-basic"
                 label="Nome"
                 variant="outlined"
@@ -60,20 +108,64 @@ export default function ModalAddClient(isAddModalVisible) {
             </div>
             <div className="input-div">
               <TextField
-                style={{ width: 100 + "%" }}
+                onChange={changeValueAdress}
+                value={adressInput}
+                style={{ width: 92 + "%" }}
                 id="outlined-basic"
                 label="Morada"
                 variant="outlined"
               />
             </div>
           </div>
-          <div style={{ paddingTop: 31 + "px" }}>
-            <span>Ativo</span>
-            <Switch label="Ativo" defaultChecked />
+          <div style={{ display: "flex" }}>
+            <div className="input-div">
+              <TextField
+                onChange={changeValueContact}
+                value={contactInput}
+                style={{ width: 92 + "%" }}
+                id="outlined-basic"
+                label="Contacto"
+                variant="outlined"
+              />
+            </div>
+
+            <div className="input-div">
+              <TextField
+                onChange={changeValueEmail}
+                value={emailInput}
+                style={{ width: 92 + "%" }}
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+              />
+            </div>
           </div>
+          <div>
+            <div style={{ paddingTop: 50 + "px" }}>
+              <TextareaAutosize
+                onChange={changeValueObjective}
+                value={objectiveInput}
+                aria-label="empty textarea"
+                placeholder="Objectivo"
+                style={{ width: 760 + "px", height: 100 + "px" }}
+              />
+            </div>
+          </div>
+
           <div style={{ paddingTop: 31 + "px" }}>
-            <Button style={{ float: "right" }} variant="contained">
+            <Button
+              onClick={addNewClient}
+              style={{ float: "right" }}
+              variant="contained"
+            >
               Adicionar cliente
+            </Button>
+            <Button
+              onClick={props.close}
+              style={{ float: "right", marginRight: 15 + "px" }}
+              variant="contained"
+            >
+              Cancelar
             </Button>
           </div>
         </Box>

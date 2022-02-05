@@ -1,16 +1,21 @@
 .modal-title {
   font-weight: 600;
   font-size: 22px;
+  width: 82%;
 }
 
 .css-1wnsr1i {
   width: 800px !important;
   left: 56% !important;
   top: 30% !important;
+  border-radius: 20px !important;
 }
 
 .input-div {
   padding-top: 50px;
-  padding-right: 50px;
   width: 50%;
+}
+
+.css-1wnsr1i {
+  background-color: #e3e3e3 !important;
 }

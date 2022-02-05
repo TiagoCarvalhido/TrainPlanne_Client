@@ -7,6 +7,9 @@ import Card from "@mui/material/Card";
 //Components
 import Header from "../src/components/Header/Header";
 import ClientsGrid from "../src/components/ClientsGrid/ClientsGrid";
+import CardsClient from "./components/cardsMain/cardsClient";
+import CardsExercise from "./components/cardsMain/cardsExercise";
+import CardsTrainPlan from "./components/cardsMain/cardsTrainPlan";
 import { DataGrid } from "@material-ui/data-grid";
 
 function App() {
@@ -16,11 +19,16 @@ function App() {
         <div>
           <Header></Header>
         </div>
-        <div style={{ display: "flex" }}>
-          <div className="card">
-            <Card style={{ height: 500 + "px" }} variant="outlined">
-              {/* <ClientsGrid></ClientsGrid> */}
-            </Card>
+
+        <div className="container">
+          <div className="cards-client">
+            <CardsClient></CardsClient>
+          </div>
+          <div className="cards-train-plan">
+            <CardsTrainPlan></CardsTrainPlan>
+          </div>
+          <div className="cards-exercise">
+            <CardsExercise></CardsExercise>
           </div>
         </div>
         <div></div>

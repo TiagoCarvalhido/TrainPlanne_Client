@@ -9,7 +9,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-
+import { Card } from "@mui/material";
 //React Hooks
 import { useState, useEffect } from "react";
 //icons Font Awesome
@@ -26,12 +26,11 @@ import {
   AiOutlineOrderedList,
   AiFillFileAdd,
 } from "react-icons/ai";
-//Drawer
+
+//Components
 import Drawer from "@mui/material/Drawer";
-
-//Modal Add Client
-
 import ModalAddClient from "../ModalAddClient/ModalAddClient";
+import ClientsGrid from "../ClientsGrid/ClientsGrid";
 
 //Lista
 import List from "@mui/material/List";
@@ -43,10 +42,18 @@ import Divider from "@mui/material/Divider";
 
 export default function Header() {
   const anchor = "left";
-
   const [isDrawerVisible, setDrawerVisible] = useState(false);
 
+  //AddClientVisible
   const [isAddClientModalVisible, setIsAddClientModalVisible] = useState(false);
+
+  //Client List
+  const [isClientListVisible, setClientListVisible] = useState(false);
+
+  const handleClientList = () => {
+    setDrawerVisible(false);
+    setClientListVisible(true);
+  };
 
   useEffect(() => {});
 
@@ -65,7 +72,7 @@ export default function Header() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 10 + "px" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -109,7 +116,7 @@ export default function Header() {
                 <ListItemText primary="Adicionar cliente" />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding>
+            <ListItem onClick={handleClientList} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <AiOutlineOrderedList />
@@ -178,8 +185,15 @@ export default function Header() {
           </List>
         </nav>
       </Drawer>
-
-      <ModalAddClient isVisible={isAddClientModalVisible}></ModalAddClient>
+      <ModalAddClient
+        isVisible={isAddClientModalVisible}
+        close={() => setIsAddClientModalVisible(false)}
+      ></ModalAddClient>
+      {isClientListVisible && (
+        <Card style={{ margin: 20 + "px" }}>
+          <ClientsGrid></ClientsGrid>
+        </Card>
+      )}
     </Box>
   );
 }

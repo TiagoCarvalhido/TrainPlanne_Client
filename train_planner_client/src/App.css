@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-image: url("./assets/background-photo.jpg");
+}
+
+body > #root > div {
+  height: 100vh;
 }
 
 .card {
@@ -12,4 +17,23 @@
   float: left;
   font-size: 20px;
   font-weight: 600;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.cards-client {
+  width: 33%;
+  margin: 30px;
+}
+
+.cards-train-plan {
+  width: 33%;
+  margin: 30px;
+}
+.cards-exercise {
+  width: 33%;
+  margin: 30px;
 }

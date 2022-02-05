@@ -20,5 +20,10 @@
 }
 
 .css-1p823my-MuiListItem-root :hover {
-  background-color: "#1976D2" !important;
+  background-color: #557a95 !important;
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: #a84444 !important ;
+  border-radius: 10px;
 }
